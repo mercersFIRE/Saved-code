@@ -13,7 +13,7 @@ int solve()
 {
     ll n, x,sum=0,ans=1;
     cin>>n;
-    std::vector<ll> v(n);
+    std::vector<ll> v(n),prime(1000006),p;
     for (int i = 0; i < n; ++i)
     {
     	cin>>v[i];
@@ -21,16 +21,32 @@ int solve()
     }
     //cout<<x<<endl;
     n=x;
-    for (int i = 2; i <=n; ++i)
+    for (ll i = 2; i<= 1e6; ++i)
+    {
+    	if(prime[i]==0)
+    	{
+			for (ll j = i+i; j <= 1e6; j+=i)
+			{
+				prime[j]++;
+			}
+    	}
+    }
+    for (int i = 2; i <= 1e6; ++i)
+    {
+    	if(!prime[i])p.pb(i);
+    }
+    for (int i = 0; i<p.size() and p[i] <=n; ++i)
     {
     	sum=0;
-    	while(n%i==0)
+    	while(n%p[i]==0)
     	{
     		sum++;
-    		n/=i;
+    		n/=p[i];
     	}
     	ans*=(sum+1);
     }
+    if(n>1)ans*=2;
+    //cout<<n<<endl;
     cout<<ans<<endl;
     return 0;
 }
