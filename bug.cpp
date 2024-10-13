@@ -16,21 +16,21 @@ int solve()
     std::vector<ll> v(n),prime(1000006),p;
     for (ll i = 2; i<= 1e6; ++i)
     {
-        if(prime[i]==0)
-        {
-            for (ll j = i+i; j <= 1e6; j+=i)
-            {
-                prime[j]++;
-            }
-        }
+    	if(prime[i]==0)
+    	{
+			for (ll j = i+i; j <= 1e6; j+=i)
+			{
+				prime[j]++;
+			}
+    	}
     }
     for (int i = 2; i <= 1e6; ++i)
     {
-        if(!prime[i])p.pb(i);
+    	if(!prime[i])p.pb(i);
     }
     for (int i = 0; i < n; ++i)
     {
-        cin>>v[i];
+    	cin>>v[i];
         map<ll, ll> m;
         for (int j = 0; j < p.size()&&p[j]<=x; ++j)
         {
