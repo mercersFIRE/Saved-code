@@ -9,50 +9,39 @@
 using namespace std;
 typedef long long ll;
 
-int solve()
+const ll N=1e6+9;
+void seive(vector<ll> &p)
 {
-    ll n, x,sum=0,ans=1;
-    cin>>n;
-    std::vector<ll> v(n),prime(1000006),p;
-    for (int i = 0; i < n; ++i)
-    {
-    	cin>>v[i];
-    	x=(i?__gcd(v[i],x):v[i]);
-    }
-    n=x;
-    for (ll i = 2; i<= 1e6; ++i)
+	vector<bool> prime(N);
+    for (ll i = 2; i*i<N; ++i)
     {
     	if(prime[i]==0)
-    	{
-			for (ll j = i+i; j <= 1e6; j+=i)
-			{
-				prime[j]++;
-			}
-    	}
+			for (ll j = i*i; j < N; j+=i)
+				prime[j]=1;
     }
-    for (int i = 2; i <= 1e6; ++i)
-    {
+    for (int i = 2; i <= N; ++i)
     	if(!prime[i])p.pb(i);
-    }
-    for (int i = 0; i<p.size() and p[i] <=n; ++i)
+}
+
+int solve()
+{
+    ll n, x,sum=0;
+    cin>>n;
+    std::vector<ll> prime;
+    seive(prime);
+    for (int i = 0; i < n; ++i)
     {
-    	sum=0;
-    	while(n%p[i]==0)
-    	{
-    		sum++;
-    		n/=p[i];
-    	}
-    	ans*=(sum+1);
+    	cout<<prime[i]<<endl;;
     }
-    if(n>1)ans*=2;
-    cout<<ans<<endl;
+
+    
     return 0;
 }
 
 int main()
 {
     fast;
-    ll tc = 1;//cin>>tc;
+    ll tc = 1;cin>>tc;
     while (tc--)
     {
         if (solve()){
