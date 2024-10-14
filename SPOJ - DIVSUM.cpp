@@ -9,7 +9,7 @@
 using namespace std;
 typedef long long ll;
 
-const ll N=2e7 +7;
+const ll N=1e6+9;
 void seive(vector<ll> &p)
 {
     vector<bool> prime(N);
@@ -26,17 +26,28 @@ void seive(vector<ll> &p)
 int solve()
 {
     ll n, x,sum=0;
-    std::vector<ll> v;
-    seive(v);
-    std::vector<pair<ll,ll>> ans;
-    for (int i = 1; i < v.size(); ++i)
+    cin>>n;
+    std::vector<ll> p,v(n);
+    seive(p);
+    for (int i = 0; i < n; ++i)
     {
-        if((v[i]-v[i-1])==2)
-            ans.pb({v[i-1],v[i]});
-    }
-    while(cin>>x)
-    {
-        cout<<"("<<ans[x-1].ff<<", "<<ans[x-1].ss<<")\n";
+        cin>>v[i];
+        x=v[i];
+        map<ll, ll> m;
+        for (int j = 0; j < p.size()&&p[j]*p[j]<=x; ++j)
+        {
+            while(v[i]%p[j]==0)
+            {
+                m[p[j]]++;v[i]/=p[j];
+            }
+        }
+        if(v[i]>1)m[v[i]]++;
+        ll sum=0,div=1,divsum=1;
+        for(auto y:m)
+        {
+            divsum*=(pow(y.ff,y.ss+1)-1)/(y.ff-1);
+        }
+        cout<<divsum-x<<endl;
     }
     
     return 0;

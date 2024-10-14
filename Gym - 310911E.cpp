@@ -32,7 +32,7 @@ int solve()
     {
         cin>>v[i];
         map<ll, ll> m;
-        for (int j = 0; j < p.size()&&p[j]<=x; ++j)
+        for (int j = 0; j < p.size()&&p[j]*p[j]<=x; ++j)
         {
             while(v[i]%p[j]==0)
             {
