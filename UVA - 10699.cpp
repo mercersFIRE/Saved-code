@@ -11,26 +11,36 @@ typedef long long ll;
 
 int solve()
 {
-    ll n, x,sum=0,ans=1;
-    std::vector<bool> prime(1e8);
+    ll n, x=1,sum=0;
+    std::vector<bool> prime(1e6 +6,1);
+    prime[1]=0;
     std::vector<ll> p;
-    for (ll i = 2; i<1e4; ++i)
+    for (ll i = 2; i*i <= 1e6; ++i)
     {
-    	if(prime[i]==0)
+    	if(prime[i])
+    		for (ll j = i+j; j <= 1e6; j+=i)
+    		{
+    			prime[j]=0;
+    		}
+    }
+    for (int i = 2; i <= 1e6; ++i)
+    {
+    	if(prime[i])p.pb(i);
+    }
+    cin>>x;
+    while(x)
+    {
+        n=x;
+    	std::map<ll, ll> m;
+    	for (int i = 0; i < p.size() and p[i]<=x; ++i)
     	{
-			for (ll j = i+i; j < 1e8; j+=i)
-			{
-				prime[j]=1;
-			}
+    		while(x%p[i]==0)
+    		{
+    			m[p[i]]++;x/=p[i];
+    		}
     	}
-    }
-    for (int i = 2; i < 1e8; ++i)
-    {
-    	if(!prime[i])p.pb(i);
-    }
-    for (int i = 0; i < p.size(); i+=100)
-    {
-        cout<<p[i]<<endl;
+    	cout<<n<<" : "<<m.size()<<endl;;
+    	cin>>x;
     }
     return 0;
 }

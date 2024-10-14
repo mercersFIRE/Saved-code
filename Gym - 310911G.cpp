@@ -11,38 +11,39 @@ typedef long long ll;
 
 int solve()
 {
-    ll n, x,sum=0,a,b;
-    cin>>a>>b;
-    n=a-b;
-    set<ll>s;
-    for (ll i = 1; i*i <= n; ++i)
+    ll n, x,sum=0;
+    cin>>n;
+    std::vector<ll> cnt(1e6 + 5),mul(1e6 + 5);
+    for (int i = 0; i < n; ++i)
     {
-    	if(n%i==0)
+    	cin>>x;
+    	cnt[x]++;
+    }
+    for (int i = 1; i <= 1e6; ++i)
+    {
+    	for (int j = i; j <= 1e6; j+=i)
     	{
-            if(i>b)
-    		s.insert(i);
-    		if((i!=n/i) and (n/i)>b)s.insert(n/i);
+    		mul[i]+=cnt[j];
     	}
     }
-    if(!s.size())return 0;
-    for(auto x:s)cout<<x<<" ";
-    	cout<<endl;    
-    return 1;
+    for (int i = 0; i < 5; ++i)
+    {
+    	cout<<mul[i+1]<<endl;
+    }
+    return 0;
 }
 
 int main()
 {
     fast;
-    ll tc = 1,x=1;cin>>tc;
-    while (x<=tc)
+    ll tc = 1;//cin>>tc;
+    while (tc--)
     {
-        cout<<"Case "<<x<<": ";
-        x++;
         if (solve()){
             //cout << "Yes\n";
         }
         else{
-            cout << "impossible\n";
+            //cout << "No\n";
         }
     }
     return 0;
