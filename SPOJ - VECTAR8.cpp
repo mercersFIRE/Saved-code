@@ -36,6 +36,7 @@ ll fun(ll n)
 
 void seive()
 {
+    p[1]=1;
     for (ll i = 2; i*i<N; ++i)
     {
         if(p[i]==0)
