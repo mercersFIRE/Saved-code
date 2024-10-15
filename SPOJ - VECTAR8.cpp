@@ -12,6 +12,7 @@ typedef long long ll;
 const ll N=1e6+9;
 vector<ll>prime,ans(N);
 vector<bool> p(N);
+
 ll zero(ll n)
 {
 	while(n) {
