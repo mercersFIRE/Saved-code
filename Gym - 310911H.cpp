@@ -11,7 +11,7 @@ typedef long long ll;
 
 int solve()
 {
-    ll n, x,sum=0,m,l,r;
+    unsigned long long n, x,sum=0,m,l,r;
     cin>>n>>m>>l>>r;
     x=(n*m)/__gcd(n,m);
     l=max(l,x);
