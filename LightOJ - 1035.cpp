@@ -9,47 +9,47 @@
 using namespace std;
 typedef long long ll;
 
-const ll N=1e6+7;
+const ll N=5e4+7,mod=1e9 +7;
 vector<ll>prime;
-vector<bool> p(N,1);
+vector<ll> p(N);
 void seive()
 {
-    p[1]=0;
+    for (ll i = 1; i < N; ++i)
+    {
+        p[i]=i;
+    }
     for (ll i = 2; i*i<N; ++i)
     {
-        if(p[i])
-            for (ll j = i*i; j < N; j+=i)
-                p[j]=0;
+        if(p[i]==i)
+            for (ll j = i*i; j < N; j+=i) 
+                p[j]=min(i,p[j]);
     }
-    for (int i = 2; i <= N; ++i)
-        if(p[i])prime.pb(i);
+    for (int i = 2; i < N; ++i)
+        if(p[i]==i)prime.pb(i);
 }
 
 int solve()
 {
-    ll n, x,sum=0;
+    ll n, x,sum=1,a;
     cin>>n;
-    std::map<ll, ll> m;
+    vector<ll>m(n+1);
     for (int i = 2; i <= n; ++i)
     {
     	x=i;
-    	for (int j = 0; j<prime.size()&& prime[j]*prime[j] <=x ; ++j)
-    	{
-    		while(x%prime[j]==0)
-    		{
-    			m[prime[j]]++;
-    			x/=prime[j];
-    		}
-    	}
-    	if(x>1)m[x]++;
+    	while(x>1)
+        {
+            m[p[x]]++;
+            x/=p[x];
+        }
     }
-    cout<<n<<" = ";
     for(auto&& i : m) {
-    	cout<<(i.ff==2?"":"* ")<<i.ff<<" ("<<i.ss<<") ";
+        //cout<<i.ff<<" "<<i.ss<<endl;
+        sum=(sum*(i+1))%mod;
     }
-    cout<<endl;
+
+    cout<<sum<<endl;
     
-    return 0;
+    return 1;
 }
 
 int main()
@@ -57,14 +57,14 @@ int main()
     fast;
     seive();
     ll tc = 1,x=1;cin>>tc;
-    while (x<=tc)
+    while (tc--)
     {
-        cout<<"Case "<<x++<<": ";
+        //cout<<"Case "<<x++<<":\n";
         if (solve()){
             //cout << "Yes\n";
         }
         else{
-            //cout << "No\n";
+            //cout << "Impossible to divide\n";
         }
     }
     return 0;
