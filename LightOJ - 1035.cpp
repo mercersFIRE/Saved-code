@@ -11,40 +11,38 @@ typedef long long ll;
 
 const ll N=5e4+7,mod=1e9 +7;
 vector<ll>prime;
-vector<ll> p(N);
+vector<bool> p(N,1);
 void seive()
 {
-    for (ll i = 1; i < N; ++i)
-    {
-        p[i]=i;
-    }
+    p[1]=0;
     for (ll i = 2; i*i<N; ++i)
     {
-        if(p[i]==i)
+        if(p[i])
             for (ll j = i*i; j < N; j+=i) 
-                p[j]=min(i,p[j]);
+                p[j]=0;
     }
     for (int i = 2; i < N; ++i)
-        if(p[i]==i)prime.pb(i);
+        if(p[i])prime.pb(i);
 }
 
 int solve()
 {
     ll n, x,sum=1,a;
     cin>>n;
-    vector<ll>m(n+1);
-    for (int i = 2; i <= n; ++i)
+    for (int i = 0; i < prime.size() and prime[i]<=n; ++i)
     {
-    	x=i;
-    	while(x>1)
+        ll cnt=0;
+
+        for (int j = prime[i]; j <= n; j+=prime[i])
         {
-            m[p[x]]++;
-            x/=p[x];
+            x=j;
+            while(x%prime[i]==0)
+            {
+        	   cnt++;
+               x/=prime[i];
+            }
         }
-    }
-    for(auto&& i : m) {
-        //cout<<i.ff<<" "<<i.ss<<endl;
-        sum=(sum*(i+1))%mod;
+        sum=(sum*(cnt+1))%mod;
     }
 
     cout<<sum<<endl;
