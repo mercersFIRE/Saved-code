@@ -29,17 +29,14 @@ int solve()
     cin>>n>>q;
     std::vector<ll> v(n);
     std::map<ll, ll> m;
-    for (int i = 0; i < n; ++i)
+    for (ll i = 0; i < n; ++i)
     {
     	cin>>v[i];
     }
-    for (int i = 0; i < n/2; ++i)
+    for (ll i = 0; i < n; ++i)
     {
-        //cout<<i<<" for "<<n-i-1<<endl;
-    	x=(n-1-i)-i;
-        m[n-i-1]=i;
-        m[i]=n-i-1;
-    	sum+=x*(v[i]-v[n-1-i]);
+    	sum+=v[i]*(n-i-1);
+        sum-=v[i]*i;
     }
     while(q--){
         ll a,b,c,mn,mx;
@@ -48,13 +45,11 @@ int solve()
             cout<<sum<<endl;
         else{
             cin>>b>>c;
-            mn=min(b,m[b]);
-            mx=max(b,m[b]);
-            x=mx-mn;
-            //cout<<mn<<" mn mx "<<mx<<endl;
-            sum-=x*(v[mn]-v[mx]);
+            sum-=v[b]*(n-b-1);
+            sum+=v[b]*b;
             v[b]=c;
-            sum+=x*(v[mn]-v[mx]);
+            sum+=v[b]*(n-b-1);
+            sum-=v[b]*b;
         }
     }
     return 0;
