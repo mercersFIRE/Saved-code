@@ -32,7 +32,6 @@ int solve()
     for (int i = 0; i < prime.size() and prime[i]<=n; ++i)
     {
         ll cnt=0;
-
         for (int j = prime[i]; j <= n; j+=prime[i])
         {
             x=j;
@@ -54,7 +53,7 @@ int main()
 {
     fast;
     seive();
-    ll tc = 1,x=1;cin>>tc;
+    ll tc = 1,x=1;//cin>>tc;
     while (tc--)
     {
         //cout<<"Case "<<x++<<":\n";

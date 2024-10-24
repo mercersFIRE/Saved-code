@@ -28,7 +28,7 @@ int solve()
     ll n, x,sum=0;
     cin>>n;
     
-    return 0;
+    return n%2!=0;
 }
 
 int main()
@@ -38,10 +38,10 @@ int main()
     while (tc--)
     {
         if (solve()){
-            //cout << "Yes\n";
+            cout << "Sakurako\n";
         }
         else{
-            //cout << "No\n";
+            cout << "Kosuke\n";
         }
     }
     return 0;
