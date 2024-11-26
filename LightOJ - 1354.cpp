@@ -22,42 +22,38 @@ void seive()
     }
     for (int i = 2; i < N; ++i)if(spf[i]==i)prime.pb(i);
 }
+ll dectobi(ll n)
+{
+    ll x=0,a=0;
+    while(n)
+    {
+        if(n&1)x+=1*pow(10,a);
+        a++;n/=2;
+    }
+    return x;
+}
 
 int solve()
 {
-    ll n, x,sum=0;
-	string s;
-    cin>>s;
-    for (int i = 0; i+1 < s.size(); ++i)
-    {
-    	if (s[i]==s[i+1])
-    	{
-    		cout<<s[i]<<s[i+1]<<endl;
-    		return 1;
-    	}
-    }
-    for (int i = 0; i+2 < s.size(); ++i)
-    {
-        if (s[i]!=s[i+2])
-        {
-            cout<<s[i]<<s[i+1]<<s[i+2]<<endl;
-            return 1;
-        }
-    }
-    return 0;
+    ll n,sum=0,a,b,c,d,D,A,B,C;
+    char x;
+    cin>>a>>x>>b>>x>>c>>x>>d>>A>>x>>B>>x>>C>>x>>D;
+    //cout<<a<<" "<<b<<" "<<c<<" "<<d<<" "<<endl<<A<<" "<<B<<" "<<C<<" "<<D<<endl;   
+    return (dectobi(a)==A && dectobi(b)==B && dectobi(c)==C && dectobi(d)==D);
 }
 
 int main()
 {
     fast;
-    ll tc = 1;cin>>tc;
-    while (tc--)
+    ll tc = 1,x=0;cin>>tc;
+    while (x++<tc)
     {
+        cout<<"Case "<<x<<": ";
         if (solve()){
-            //cout << "Yes\n";
+            cout << "Yes\n";
         }
         else{
-            cout << "-1\n";
+            cout << "No\n";
         }
     }
     return 0;

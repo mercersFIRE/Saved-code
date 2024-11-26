@@ -26,24 +26,14 @@ void seive()
 int solve()
 {
     ll n, x,sum=0;
-	string s;
-    cin>>s;
-    for (int i = 0; i+1 < s.size(); ++i)
+    cin>>n>>x;
+    for (int i = 1; i < max(n,x); ++i)
     {
-    	if (s[i]==s[i+1])
-    	{
-    		cout<<s[i]<<s[i+1]<<endl;
-    		return 1;
-    	}
+    	ll a=n^i;
+    	if((n%i==0&&a<x)||(a%i==0&&a<x))sum++;
     }
-    for (int i = 0; i+2 < s.size(); ++i)
-    {
-        if (s[i]!=s[i+2])
-        {
-            cout<<s[i]<<s[i+1]<<s[i+2]<<endl;
-            return 1;
-        }
-    }
+    cout<<sum<<endl;
+    
     return 0;
 }
 
@@ -57,7 +47,7 @@ int main()
             //cout << "Yes\n";
         }
         else{
-            cout << "-1\n";
+            //cout << "No\n";
         }
     }
     return 0;
