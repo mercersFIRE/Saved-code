@@ -30,9 +30,29 @@ ll fun(ll x)
 
 int solve()
 {
-    ll n, x,sum=0;
-    cin>>n>>x;
-    cout<<fun(n)<<" "<<fun(x)<<endl;
+    ll n, x,sum=0,d,y;
+    string s;char c;
+    std::map<string, ll> m;
+    m["January"]=0;
+    m["February"]=1;
+    m["March"]=2;
+    m["April"]=3;
+    m["May"]=4;
+    m["June"]=5;
+    m["July"]=6;
+    m["August"]=7;
+    m["September"]=8;
+    m["October"]=9;
+    m["November"]=10;
+    m["December"]=11;
+    cin>>s>>d>>c>>y;
+    sum=m[s]*30+d;
+    n=sum<=59?y:y+1;
+    cin>>s>>d>>c>>y;
+    sum=m[s]*30+d;
+    x=sum>=59?y:y-1;
+    //cout<<n<<" "<<x<<endl;
+    cout<<fun(x)-fun(n-1)<<endl;
 
     
     return 0;
@@ -41,9 +61,10 @@ int solve()
 int main()
 {
     fast;
-    ll tc = 1;cin>>tc;
-    while (tc--)
+    ll tc = 1,x=0;cin>>tc;
+    while (x<tc)
     {
+        cout<<"Case "<<++x<<": ";
         if (solve()){
             //cout << "Yes\n";
         }
