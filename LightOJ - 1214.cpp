@@ -26,30 +26,34 @@ void seive()
 int solve()
 {
     ll n, x,sum=0;
-    cin>>n;
-    std::vector<ll> v(n+1);
-    for (int i = 0; i < n; ++i)
+    string s;
+    cin>>s>>n;
+    reverse(s.begin(), s.end());
+    n=abs(n);
+    for (int i = 0; i < s.size(); ++i)
     {
-        cin>>v[i+1];
+        if (s[i]=='-')
+        {
+            continue;
+        }
+    	x=s[i]-'0';
+    	sum=((sum*10)+x)%n;
     }
-    for (int i = 0; i < n; ++i)
-    {
-        if(v[i]==v[i-1])
-    }
-    return 0;
+    return sum==0;
 }
 
 int main()
 {
     fast;
-    ll tc = 1;cin>>tc;
-    while (tc--)
+    ll tc = 1,x=0;cin>>tc;
+    while (x<tc)
     {
+        cout<<"Case "<<++x<<": ";
         if (solve()){
-            //cout << "Yes\n";
+            cout << "divisible\n";
         }
         else{
-            //cout << "No\n";
+            cout << "not divisible\n";
         }
     }
     return 0;

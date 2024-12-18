@@ -27,21 +27,27 @@ int solve()
 {
     ll n, x,sum=0;
     cin>>n;
-    std::vector<ll> v(n+1);
-    for (int i = 0; i < n; ++i)
-    {
-        cin>>v[i+1];
+    std::map<ll, ll> m;
+    for(auto&& i : prime) {
+        if(n<i)break;
+        while(n%i==0 and n) {
+            m[i]++;
+            sum=max(sum,m[i]);
+            n/=i;
+        }
     }
-    for (int i = 0; i < n; ++i)
-    {
-        if(v[i]==v[i-1])
-    }
+    /*for(auto&& i : m) {
+            cout<<i.ff<<" "<<i.ss<<endl;
+    }*/
+    cout<<sum<<endl;
+    
     return 0;
 }
 
 int main()
 {
     fast;
+    seive();
     ll tc = 1;cin>>tc;
     while (tc--)
     {

@@ -9,7 +9,7 @@
 using namespace std;
 typedef long long ll;
 
-const ll N=1e6+7;
+const ll N=1e5+4;
 vector<ll>prime,spf(N);
 void seive()
 {
@@ -25,24 +25,42 @@ void seive()
 
 int solve()
 {
-    ll n, x,sum=0;
+    ll n, x,sum=0,l,r,k;
+    std::vector<ll> v[N];
+    for (ll i = 1; i <N; ++i)
+    {
+        x = i;
+        ll div=1;
+        while(x>1) {
+            ll p = spf[x],e = 0;
+            while(x%p==0)
+            {
+                e++;
+                x/=p;
+            }
+            div*=(2*e+1);
+        }
+        v[div].pb(i*i);
+        //cout<<div<<endl;
+    }
     cin>>n;
-    std::vector<ll> v(n+1);
     for (int i = 0; i < n; ++i)
     {
-        cin>>v[i+1];
+        ll sum=0;
+        cin>>k>>l>>r;
+        
+        cout<<upper_bound(v[k].begin(), v[k].end(),r)-lower_bound(v[k].begin(), v[k].end(),l)<<endl;
+        
     }
-    for (int i = 0; i < n; ++i)
-    {
-        if(v[i]==v[i-1])
-    }
+    
     return 0;
 }
 
 int main()
 {
     fast;
-    ll tc = 1;cin>>tc;
+    seive();
+    ll tc = 1;//cin>>tc;
     while (tc--)
     {
         if (solve()){
