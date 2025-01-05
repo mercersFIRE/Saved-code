@@ -12,7 +12,7 @@ typedef long long ll;
 const ll N = 1e5+7;
 
 vector<ll> v(N),t(4*N,1e18);
-ll build(ll n, ll b , ll e)
+ll build(ll n, ll b , ll e) 
 {
     if(b==e)return t[n] = v[e];
 

@@ -34,11 +34,13 @@ int solve()
     	if(s[i]=='s')a=1;
     	if(s[i]=='p')b=1;
     }
+    std::map<ll, ll> m;
     if((a+b)<2)return 1;
     for (int i = 0; i < s.size(); ++i)
     {
     	if(s[i]=='s')sum++;
     	v[i]+=sum;
+        m[sum]++;
     }
     sum=0;
     for (int i = n-1; i >=0; --i)

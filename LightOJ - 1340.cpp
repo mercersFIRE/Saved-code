@@ -25,17 +25,15 @@ void seive()
 
 ll mod_exp(ll base, ll exp, ll mod) {
     ll result = 1;
-    base = base % mod; // Ensure base is within bounds
+    base = base % mod;
 
     while (exp > 0) {
-        // If exp is odd, multiply the base with result
         if (exp % 2 == 1) {
             result = (result * base) % mod;
         }
         base = (base * base) % mod;
         exp /= 2;
     }
-
     return result;
 }
 
@@ -43,7 +41,6 @@ int solve()
 {
     ll n, x,sum=1,mod=10000019;
     cin>>n>>x;
-    vector<ll> m(1e5+5);
     for (int i = 0; prime[i]<=n and i < prime.size(); ++i)
     {
     	ll a=n,b=0;
