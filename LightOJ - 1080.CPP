@@ -39,7 +39,6 @@ ll query(ll n,ll b,ll e,ll i)
 }
 int solve()
 {
-	fill(lazy.begin(), lazy.end(),0);
     ll n, x,sum=0,q;
     cin>>n>>q;
     for (int i = 0; i < n; ++i)
