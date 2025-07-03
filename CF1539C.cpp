@@ -20,13 +20,12 @@ int solve()
     for(unsigned i = 1; i < n; ++i) s.insert(v[i]-v[i-1]);
 
     while(s.size() and *s.begin()<=x) s.erase(s.begin());
-    for(unsigned i = 0; i < k; ++i) {
-    	if(s.empty()) continue;
+    for(unsigned i = 0; s.size(); ++i) {
     	a=*s.begin();
+        ll req=((a + x - 1) / x)-1;
+        if(req>k)break;
+        k-=req;
         s.erase(s.begin());
-    	s.insert(a/2);
-    	s.insert((a+1)/2);
-    	while(s.size() and *s.begin()<=x)s.erase(s.begin());
     }
 
     cout<<1+s.size()<<endl;
